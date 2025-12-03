@@ -1,0 +1,878 @@
+  body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc; /* Very subtle off-white bg */
+        }
+
+        /* Navbar Styling */
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: #555 !important;
+            font-size: 0.95rem;
+            margin: 0 10px;
+        }
+        
+        .nav-link:hover {
+            color: #0d6efd !important;
+        }
+        .navbtn{
+            background-color: #0d6efd !important;
+            border-radius: 8px;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            padding-top: 80px;
+            padding-bottom: 25px;
+        }
+
+        h1.hero-title {
+            font-weight: 800;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: #111;
+            margin-bottom: 1.5rem;
+        }
+
+        p.hero-text {
+            color: #6c757d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        /* Button Customization */
+        .btn-primary-custom {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #0b5ed7 !important;
+        }
+
+        .btn-light-custom {
+            background-color: #f3f4f6 !important;
+            color: #333;
+            border: 1px solid #f3f4f6 !important;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-light-custom:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Image styling */
+        .hero-img {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+
+          /* Typography Matches */
+    .section-title {
+        font-weight: 800;
+        font-size: 2.2rem;
+        color: #111;
+        letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Feature Card Styling */
+    .feature-card {
+        background-color: #f8f9fa; /* Very light grey background */
+        border: 1px solid #f0f0f0; /* Subtle border */
+        border-radius: 16px;       /* Smooth rounded corners */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Subtle hover effect */
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        background-color: #fff;
+        border-color: #e2e8f0;
+    }
+
+    /* Icon Styling */
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        background-color: #e0eaff; /* Light Blue Background */
+        color: #0d6efd;            /* Bootstrap Primary Blue Icon */
+        border-radius: 50%;        /* Circle shape */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .feature-title {
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: #222;
+    }
+
+    .feature-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+     /* Reuse previous typography if available, otherwise define here */
+    .section-title {
+        font-weight: 800;
+        font-size: 2.2rem;
+        color: #111;
+        letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 90%;
+    }
+
+    .small-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* List Item Icon Styling */
+    .bi-check-circle {
+        color: #0d6efd; /* Primary Blue */
+        margin-top: 2px; /* slight visual alignment adjustment */
+    }
+
+    /* Right Side Visual - The Glowing Shield */
+    .security-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px; /* Adjust height to define section space */
+    }
+
+    .shield-circle {
+        width: 300px;
+        height: 450px;
+     
+    }
+
+    .shield-circle i {
+        font-size: 8rem; /* Make the icon huge */
+        color: #0d6efd;
+    }
+
+        .custom-blue-bg {
+            background-color: #1a5cff; /* Electric Blue */
+        }
+        
+        /* Optional: Makes the button text match the background blue */
+        .text-custom-blue {
+            color: #1a5cff;
+        }
+         
+               /* Custom link styles to match the gray look */
+        .footer-link {
+            color: #6c757d; /* Bootstrap text-muted color */
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        /* darker color on hover */
+        .footer-link:hover {
+            color: #0d6efd; /* Bootstrap Primary Blue */
+        }
+
+        /* The small header text (PRODUCT, COMPANY, etc) */
+        .footer-heading {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #adb5bd; /* Lighter gray */
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Logo Icon Color */
+        .brand-icon {
+            color: #0d6efd; /* Electric Blue */
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+  
+        .footericon {
+            color: #0d6efd;
+           font-size: 20px;
+            transition: color 0.2s;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #e4e1fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+            
+        .mockup-wrapper {
+            position: relative;
+            max-width: 320px;
+            margin: 0 auto; /* Center on mobile */
+        }
+
+        /* The Phone Border/Frame */
+        .phone-frame {
+            border: 12px solid #212529; /* Dark bezel */
+            border-radius: 40px;
+            overflow: hidden; /* Clips content inside */
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 9/19; /* Standard phone ratio */
+        }
+
+        /* The Blue Header inside the phone */
+        .phone-header {
+            background-color: #0d6efd; /* Bootstrap primary blue */
+            color: white;
+            padding: 20px;
+        }
+
+        /* --- Floating Cards (The "Pop-outs") --- */
+        
+        /* Dark Card (Left side) */
+        .floating-card-dark {
+            position: absolute;
+            top: 35%;
+            left: -60px; /* Pulls it outside the phone frame */
+            z-index: 2;
+            width: 220px;
+            background-color: #1a1d20;
+            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Green Card (Right/Bottom side) */
+        .floating-card-green {
+            position: absolute;
+            bottom: 15%;
+            right: -40px; /* Pulls it outside the phone frame */
+            z-index: 2;
+            background-color: #198754; /* Bootstrap Success Green */
+            color: white;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 10px 20px rgba(25, 135, 84, 0.4);
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+
+         .service-hero {
+            background: linear-gradient(120deg, #102a43 0%, #1e4b75 50%, #245c8f 100%);
+               background-image: url('img/servicebanner.jpg'); 
+               background-size: cover; 
+            border-radius: 20px;
+            padding: 80px 40px;
+            color: white;
+
+            position: relative;
+            overflow: hidden;
+        }
+        
+
+        .hero-btn {
+            background-color: #1a73e8;
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        .hero-btn:hover {
+            background-color: #155db1;
+            color: white;
+        }
+
+        /* Service Cards Styling */
+        .service-img-container {
+            height: 180px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #e2e8f0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .service-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .service-desc {
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        /* Partnership Cards Styling */
+        .partner-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            height: 100%;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .partner-icon {
+            color: #1a73e8;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .partner-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .partner-desc {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+
+
+  .featurehero-title {
+            font-weight: 800;
+            color: #212529;
+        }
+        
+        .featurehero-subtitle {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Pills */
+        .filter-pill {
+            border: none;
+            background-color: #e9ecef;
+            color: #495057;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            transition: all 0.2s;
+        }
+        
+        .filter-pill:hover {
+            background-color: #dee2e6;
+        }
+
+        .filter-pill.active {
+            background-color: #d0e1fd;
+            color: #0d6efd;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border: none;
+            border-radius: 30px 30px 30px 0px;
+            padding: 24px;
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .card-icon {
+            color: #0d6efd; /* Bootstrap Primary Blue */
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .core-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            margin-top: 12px;
+            color: #343a40;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #6c757d;
+        
+        }
+
+        /* Bottom CTA */
+        .cta-box {
+            background-color: #dbeafe; /* Light blue */
+            border-radius: 16px;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            font-weight: 600;
+            padding: 10px 24px;
+        }
+
+.icon-hover-effect {
+    width: 62px;
+    height: 62px;
+    background-color:#e4e1fe;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.icon-hover-effect svg {
+    position: relative;
+    z-index: 2;
+    color: black;
+    font-size: 28px;
+    transition: color .3s ease;
+}
+
+/* Circle animation */
+.icon-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0d6efd;
+    border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+    transform: scale(0);
+    z-index: 1;
+}
+
+/* Hover background circle */
+.icon-hover-effect:hover::before {
+    transform: scale(1);
+}
+
+/* IMPORTANT — change SVG color on hover */
+.icon-hover-effect:hover svg {
+    color: white;
+    fill: white;
+    stroke: white;
+}
+
+ .coresecurity-features{
+    background: #ebeff0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+ }
+
+ .financial-card{
+      background: white;
+            border-right: 1px solid #e9ecef;
+            padding: 24px;
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+ }
+
+ .remote-card {
+    background: white;
+    border: none;
+    border-radius: 30px; 
+    padding: 40px 30px 50px 30px; 
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.remote-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-icon {
+    font-size: 25px;
+    color: #0d6efd; 
+    display: inline-block;
+
+}
+
+/* Title Styling */
+.card-title {
+    color: #004d40; 
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+/* Description Styling */
+.card-desc {
+    color: #6c757d;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* The "01" Circle Badge */
+.step-number {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%); /* यह इसे आधा नीचे और आधा ऊपर रखता है */
+    width: 60px;
+    height: 60px;
+    background-color: #0d6efd; /* Dark Green Background */
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    box-shadow: 0 0 0 8px #eef5f4; 
+    z-index: 2;
+}
+
+
+ .contacthero {
+            
+            background: linear-gradient(rgba(45, 60, 70, 0.7), rgba(45, 60, 70, 0.7)), 
+                        url('img/photo-1521737604893-d14cc237f11d.avif');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            height: 400px;
+            color: white;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contacthero h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contacthero p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .form-container {
+            background: #ffffff;
+            border-radius: 10px;
+        }
+
+        h2.form-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+       
+
+        .form-control, .form-select {
+            background-color: #f5f6f8; /* Light grey background for inputs */
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            padding: 10px 15px !important;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #fff;
+            box-shadow: none;
+            border-color: #0d6efd;
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 100px;
+        }
+
+        .radio-box {
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            padding: 10px 15px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .radio-box:hover {
+            border-color: #b0b0b0;
+        }
+
+        .form-check-input {
+            margin-top: 0;
+            margin-right: 10px;
+        }
+
+        .btn-submit {
+            background-color: #1a56db; /* Royal Blue */
+            border: none;
+            padding: 10px 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1545b3;
+        }
+
+        /* Responsive spacing for radio grid */
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+
+           .section-slider h2 {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* Swiper Container Styles */
+        .testimonial-slider {
+            width: 100%;
+            /* max-width: 900px; */
+            padding: 20px 60px 60px 60px; /* Padding for arrows and pagination */
+            position: relative;
+        }
+
+        /* The Card Styling */
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Quote Icon */
+        .quote-icon {
+            color: #0d6efd; /* The specific blue color */
+            font-size: 4rem; /* Large size */
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        /* Testimonial Text */
+        .testimonial-text {
+            color: #4b5563;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Author Section */
+        .author-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #111;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .author-role {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* Custom Navigation Arrows (White Circles) */
+        .swiper-button-prev,
+        .swiper-button-next {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #333; /* Arrow color */
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .swiper-button-prev:hover,
+        .swiper-button-next:hover {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        /* Pagination Dots */
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #d1d5db;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #4f46e5; /* Active blue dot */
+        }
+        
+    
+        .swiper-slide-active .testimonial-card {
+    background-color: aliceblue !important; /* Blue Background */
+    box-shadow: 0 15px 40px rgba(158, 153, 237, 0.4) !important; /* Blue Shadow/Glow */
+    border-color: #4f46e5;
+    transform: scale(1.05); /* Optional: Make it slightly bigger */
+}
+
+
+
+
+        /* --- Responsive Tweaks --- */
+        @media (max-width: 991px) {
+            /* On tablet/mobile, center the text */
+            .text-content {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            .list-unstyled {
+                display: inline-block;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* On very small screens, tuck the floating cards in so they don't cause scrollbars */
+            .floating-card-dark {
+                left: -10px;
+                width: 180px;
+                font-size: 0.8rem;
+            }
+            .floating-card-green {
+                right: -10px;
+                font-size: 1rem;
+            }
+
+             .financial-card{
+            border: none;
+     
+            }
+
+              .testimonial-slider { padding: 0 0 50px 0; }
+            .swiper-button-prev, .swiper-button-next { display: none; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            h1.hero-title {
+                font-size: 26px;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 25px;
+            }
+            p.hero-text {
+                text-align: center;
+                margin: 0 auto 2rem auto;
+            }
+            .hero-btns {
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-subtitle {
+            max-width: 100%;
+        }
+        
+        /* Make the graphic smaller on mobile */
+       
+        
+        .shield-circle i {
+            font-size: 6rem;
+        }
+        }

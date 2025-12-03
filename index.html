@@ -1,3091 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advance Pay - Premium Mobile Locker & E-Mandate Solutions</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advance Pay - Premium Mobile Locker & E-Mandate Solutions</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  <!-- Google Font -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
 
-  <!-- Icon library -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- GSAP -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
-    defer
-  ></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
-    defer
-  ></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #0b1120;
-      --primary-soft: #020617;
-      --secondary: #1e3c72;
-      --secondary-soft: #111827;
-      --accent: #ffb800;
-      --accent-soft: rgba(255, 184, 0, 0.16);
-      --accent-strong: #f59e0b;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --card-bg: #020617;
-      --card-soft: #020617;
-      --gradient-hero: radial-gradient(circle at 0% 0%, #1d4ed8 0, transparent 40%),
-        radial-gradient(circle at 100% 0%, #7c3aed 0, transparent 40%),
-        radial-gradient(circle at 50% 100%, #0ea5e9 0, transparent 45%),
-        linear-gradient(160deg, #020617 0%, #020617 60%, #020617 100%);
-      --gradient-accent: linear-gradient(135deg, #facc15, #f97316);
-      --text-main: #e5e7eb;
-      --text-heading: #f9fafb;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
-      --radius-xl: 26px;
-      --radius-lg: 20px;
-      --radius-full: 999px;
-      --blur-glass: 18px;
-      --transition-fast: 0.22s ease;
-      --transition-med: 0.35s ease;
-      --nav-height: 72px;
-    }
-
-    html,
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 10% -10%, #1d4ed8 0, transparent 35%),
-        radial-gradient(circle at 90% -20%, #7c3aed 0, transparent 40%),
-        #020617;
-      color: var(--text-main);
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    ::selection {
-      background: var(--accent-strong);
-      color: #020617;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /*-------------------------
-      NAVBAR (improved)
-    --------------------------*/
-    .navbar {
-      position: fixed;
-      inset-inline: 0;
-      padding-bottom: 10px;
-      padding-top: 18px;
-      top: 0;
-      z-index: 1000;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.32), transparent 55%)
-        , rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(var(--blur-glass));
-      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
-      transition: background var(--transition-med), box-shadow var(--transition-med),
-        transform 0.25s ease, border-color var(--transition-med);
-    }
-
-    .navbar.scrolled {
-      background: rgba(15, 23, 42, 0.98);
-      border-bottom-color: rgba(31, 41, 55, 0.9);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.9);
-      transform: translateY(0);
-    }
-
-    .navbar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      cursor: pointer;
-    }
-
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 1rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.12rem;
-      padding-left: 10px;
-    }
-
-    .brand-title {
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-heading);
-      white-space: nowrap;
-    }
-
-    .brand-sub {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.21em;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
-    }
-
-    .nav-link {
-      font-size: 0.83rem;
-      font-weight: 500;
-      color: rgba(209, 213, 219, 0.8);
-      position: relative;
-      padding: 0.15rem 0;
-      cursor: pointer;
-      transition: color var(--transition-fast), transform var(--transition-fast),
-        opacity var(--transition-fast);
-      opacity: 0.9;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.18rem;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-accent);
-      border-radius: 999px;
-      transition: width var(--transition-fast);
-    }
-
-    .nav-link:hover {
-      color: #f9fafb;
-      transform: translateY(-1px);
-      opacity: 1;
-    }
-
-    .nav-link.active {
-      color: #f9fafb;
-      font-weight: 600;
-    }
-
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      padding: 0.55rem 1.2rem;
-      border-radius: 999px;
-      background-image: var(--gradient-accent);
-      box-shadow: 0 16px 35px rgba(250, 204, 21, 0.35);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #0b1120;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      white-space: nowrap;
-    }
-
-    .nav-cta i {
-      font-size: 0.8rem;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 22px 50px rgba(250, 204, 21, 0.45);
-    }
-
-    .nav-cta:active {
-      transform: translateY(0) scale(0.98);
-      box-shadow: 0 12px 30px rgba(250, 204, 21, 0.35);
-    }
-
-    .nav-toggle {
-      display: none;
-      color: #e5e7eb;
-      font-size: 1.35rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    /*-------------------------
-      LAYOUT
-    --------------------------*/
-    main {
-      margin-top: var(--nav-height);
-    }
-
-    section {
-      position: relative;
-      padding: 5rem 1.5rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      max-width: 640px;
-      margin-bottom: 2.6rem;
-    }
-
-    .section-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.14), transparent 45%),
-        rgba(15, 23, 42, 0.8);
-      color: var(--muted);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-bottom: 0.85rem;
-    }
-
-    .section-kicker-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--gradient-accent);
-    }
-
-    .section-title {
-      font-size: clamp(1.9rem, 2.6vw, 2.4rem);
-      font-weight: 800;
-      color: var(--text-heading);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.7;
-    }
-
-    /*-------------------------
-      HERO
-    --------------------------*/
-    .hero {
-      padding-top: 4.5rem;
-      padding-bottom: 5rem;
-      background-image: var(--gradient-hero);
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 3.2rem;
-      align-items: center;
-    }
-
-    .hero-left {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      margin-bottom: 1.25rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      box-shadow: 0 18px 60px rgba(15, 23, 42, 1);
-    }
-
-    .hero-badge .pill {
-      padding: 0.1rem 0.55rem;
-      border-radius: 999px;
-      background-image: var(--gradient-accent);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #0b1120;
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 3.3vw, 3.1rem);
-      line-height: 1.05;
-      font-weight: 900;
-      color: var(--text-heading);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-title span.highlight {
-      background: linear-gradient(120deg, #facc15, #f97316);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 0.98rem;
-      max-width: 480px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero-pill {
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(55, 65, 81, 0.8);
-      font-size: 0.75rem;
-      color: #d1d5db;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .hero-pill i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      align-items: center;
-      margin-bottom: 1.4rem;
-    }
-
-    .btn-primary {
-      padding: 0.85rem 1.6rem;
-      border-radius: 999px;
-      background-image: var(--gradient-accent);
-      border: none;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #0b1120;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      box-shadow: 0 20px 50px rgba(250, 204, 21, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary i {
-      font-size: 1rem;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 24px 60px rgba(250, 204, 21, 0.45);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0) scale(0.98);
-      box-shadow: 0 15px 35px rgba(250, 204, 21, 0.35);
-    }
-
-    .btn-ghost {
-      padding: 0.85rem 1.3rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      transition: background var(--transition-fast), border var(--transition-fast),
-        transform 0.2s ease;
-    }
-
-    .btn-ghost i {
-      color: #a5b4fc;
-      font-size: 0.95rem;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: #e5e7eb;
-      color: #e5e7eb;
-      transform: translateY(-1px);
-    }
-
-    .hero-footnote {
-      font-size: 0.72rem;
-      color: rgba(148, 163, 184, 0.9);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 0.7rem;
-    }
-
-    .hero-footnote .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
-    }
-
-    .hero-right {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-orbit {
-      position: absolute;
-      inset: -30%;
-      pointer-events: none;
-      opacity: 0.4;
-      filter: blur(2px);
-    }
-
-    .hero-orbit-circle {
-      position: absolute;
-      inset: 0;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.35);
-      transform-origin: center;
-    }
-
-    .hero-orbit-circle:nth-child(1) {
-      transform: rotate(12deg);
-    }
-
-    .hero-orbit-circle:nth-child(2) {
-      inset: 10%;
-      border-style: solid;
-      border-color: rgba(55, 65, 81, 0.6);
-    }
-
-    .hero-orbit-circle:nth-child(3) {
-      inset: 20%;
-      border-style: dashed;
-      border-color: rgba(148, 163, 184, 0.35);
-    }
-
-    .device-card {
-      position: relative;
-      border-radius: 30px;
-      padding: 1.35rem;
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.08), transparent 55%),
-        rgba(15, 23, 42, 0.96);
-      box-shadow: var(--shadow-soft);
-      /* max-width: 360px; */
-      margin-left: auto;
-      overflow: hidden;
-      border: 1px solid rgba(55, 65, 81, 0.98);
-    }
-
-    .device-tag {
-      position: absolute;
-      top: 12px;
-      right: 1.3rem;
-      padding: 0.28rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 0.7rem;
-      color: #e5e7eb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .device-tag span.dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .device-layout {
-      margin-top: 12px;
-      display: flex;
-      gap: 1rem;
-      flex-direction: row;
-    }
-
-    .device-phone {
-      width: 100%;
-      border-radius: 22px;
-      background: linear-gradient(150deg, #020617, #020617);
-      padding: 0.4rem;
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .device-phone-inner {
-      border-radius: 18px;
-      background: radial-gradient(circle at 10% 0%, #1d4ed8, #0f172a);
-      padding: 0.7rem 0.7rem 0.9rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-
-    .phone-status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.4rem;
-    }
-
-    .phone-status-pill {
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(191, 219, 254, 0.5);
-      font-size: 0.6rem;
-      color: #e5e7eb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .phone-status-pill span {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .phone-signal-dots {
-      display: flex;
-      gap: 2px;
-    }
-
-    .phone-signal-dots span {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(248, 250, 252, 0.65);
-    }
-
-    .phone-main {
-      margin: 0.4rem 0 0.6rem;
-    }
-
-    .phone-main h3 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 0.1rem;
-    }
-
-    .phone-main p {
-      font-size: 0.68rem;
-      color: rgba(226, 232, 240, 0.85);
-    }
-
-    .phone-metrics {
-      display: flex;
-      gap: 0.35rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .phone-metric {
-      flex: 1;
-      padding: 0.35rem 0.45rem;
-      border-radius: 0.8rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .phone-metric label {
-      display: block;
-      font-size: 0.55rem;
-      color: rgba(148, 163, 184, 0.9);
-      margin-bottom: 0.05rem;
-    }
-
-    .phone-metric span {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .phone-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .phone-btn {
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: none;
-      font-size: 0.62rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      white-space: nowrap;
-    }
-
-    .phone-btn.primary {
-      background-image: var(--gradient-accent);
-      color: #0b1120;
-    }
-
-    .phone-btn.ghost {
-      background: rgba(15, 23, 42, 0.9);
-      color: #cbd5f5;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-    }
-
-    .phone-btn i {
-      font-size: 0.7rem;
-    }
-
-    .device-meta {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 0.4rem;
-    }
-
-    .device-meta h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #e5e7eb;
-      margin-bottom: 0.3rem;
-    }
-
-    .device-meta p {
-      font-size: 0.72rem;
-      color: rgba(148, 163, 184, 0.95);
-      margin-bottom: 0.6rem;
-      line-height: 1.6;
-    }
-
-    .device-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .device-badge {
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      font-size: 0.63rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      color: #e5e7eb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .device-badge i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    .device-stats {
-      display: flex;
-      gap: 0.7rem;
-    }
-
-    .device-stat {
-      flex: 1;
-      padding: 0.45rem 0.55rem;
-      border-radius: 0.9rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-    }
-
-    .device-stat label {
-      display: block;
-      font-size: 0.6rem;
-      color: rgba(148, 163, 184, 0.9);
-      margin-bottom: 0.08rem;
-    }
-
-    .device-stat span {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .device-footer {
-      margin-top: 0.9rem;
-      padding-top: 0.65rem;
-      border-top: 1px dashed rgba(148, 163, 184, 0.5);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.7rem;
-      color: rgba(148, 163, 184, 0.95);
-      gap: 0.75rem;
-    }
-
-    .device-footer span.badge {
-      padding: 0.14rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.16);
-      color: #a7f3d0;
-      border: 1px solid rgba(16, 185, 129, 0.7);
-      font-size: 0.62rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      white-space: nowrap;
-    }
-
-    .device-footer span.badge i {
-      font-size: 0.6rem;
-    }
-
-    /*-------------------------
-      SERVICES
-    --------------------------*/
-    .section-dark {
-      background: radial-gradient(circle at 10% 0%, #020617 0, transparent 35%),
-        #020617;
-      border-top: 1px solid rgba(15, 23, 42, 1);
-    }
-
-    .section-darker {
-      background: radial-gradient(circle at 80% 0%, #020617 0, transparent 40%),
-        #020617;
-      border-top: 1px solid rgba(15, 23, 42, 1);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1.4rem;
-    }
-
-    .service-card {
-      position: relative;
-      border-radius: var(--radius-lg);
-      padding: 1.4rem;
-      background: radial-gradient(circle at 0 0, rgba(55, 65, 81, 0.72), #020617);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.9);
-      overflow: hidden;
-      transition: transform var(--transition-med), box-shadow var(--transition-med),
-        border var(--transition-med), background var(--transition-med);
-      cursor: default;
-    }
-
-    .service-card::before {
-      content: "";
-      position: absolute;
-      inset: -60%;
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.12), transparent 55%);
-      opacity: 0;
-      transform: translate3d(-10%, 10%, 0);
-      transition: opacity var(--transition-med), transform var(--transition-med);
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px) translateZ(0);
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
-      border-color: rgba(250, 204, 21, 0.7);
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.15), #020617);
-    }
-
-    .service-card:hover::before {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .service-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 1rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      margin-bottom: 0.7rem;
-      color: #facc15;
-    }
-
-    .service-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 0.25rem;
-    }
-
-    .service-tagline {
-      font-size: 0.74rem;
-      color: var(--accent-strong);
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .service-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 0.8rem;
-    }
-
-    .service-meta-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: rgba(148, 163, 184, 0.95);
-    }
-
-    .service-meta-chip {
-      padding: 0.12rem 0.45rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.2rem;
-      font-size: 0.65rem;
-      color: rgba(226, 232, 240, 0.95);
-    }
-
-    .service-meta-chip i {
-      font-size: 0.6rem;
-      color: var(--accent-strong);
-    }
-
-    /*-------------------------
-      DEAL TYPES
-    --------------------------*/
-    .deal-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 1.8rem;
-      align-items: center;
-    }
-
-    .deal-left p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 540px;
-      line-height: 1.7;
-      margin-bottom: 1.6rem;
-    }
-
-    .deal-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-
-    .deal-badge {
-      padding: 0.5rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 0.8rem;
-      color: #e5e7eb;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .deal-badge span {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent-strong);
-    }
-
-    .deal-card {
-      border-radius: var(--radius-lg);
-      padding: 1.4rem;
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.12), #020617);
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
-    }
-
-    .deal-card h4 {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 0.5rem;
-    }
-
-    .deal-card p {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .deal-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.65rem 0.95rem;
-      margin-bottom: 1rem;
-      font-size: 0.78rem;
-      color: #e5e7eb;
-    }
-
-    .deal-list li {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
-
-    .deal-list li i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    /*-------------------------
-      APP FEATURES
-    --------------------------*/
-    .feature-layout {
-      display: grid;
-      grid-template-columns: 1.4fr 1.2fr;
-      gap: 1.8rem;
-      align-items: flex-start;
-    }
-
-    .feature-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.6rem;
-    }
-
-    .feature-pill {
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 0.75rem;
-      color: rgba(209, 213, 219, 0.96);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .feature-pill i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    .feature-note {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: rgba(148, 163, 184, 0.96);
-      max-width: 460px;
-    }
-
-    .feature-card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
-
-    .feature-card {
-      border-radius: 1.1rem;
-      padding: 0.9rem 1rem;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
-      font-size: 0.78rem;
-    }
-
-    .feature-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.4rem;
-    }
-
-    .feature-card-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #e5e7eb;
-    }
-
-    .feature-card-chip {
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15, 118, 110, 0.22);
-      border: 1px solid rgba(45, 212, 191, 0.6);
-      color: #a5f3fc;
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .feature-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .feature-card li {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: rgba(209, 213, 219, 0.96);
-    }
-
-    .feature-card li i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    /*-------------------------
-      E-MANDATE / RBI
-    --------------------------*/
-    .emandate-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 1.2fr;
-      gap: 1.8rem;
-      align-items: center;
-    }
-
-    .emandate-card {
-      border-radius: 1.3rem;
-      padding: 1.5rem;
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.18), #020617);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      box-shadow: 0 30px 80px rgba(15, 23, 42, 1);
-    }
-
-    /* .emandate-row {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 1.1rem;
-    } */
-
-    .emandate-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.7rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .emandate-chip {
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 0.7rem;
-      color: rgba(226, 232, 240, 0.96);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .emandate-chip i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    .emandate-logo-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 0.75rem;
-      color: rgba(226, 232, 240, 0.98);
-      margin-bottom: 0.4rem;
-    }
-
-    .emandate-logo-pill span {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .emandate-banks {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.5rem;
-      font-size: 0.76rem;
-    }
-
-    .emandate-banks span {
-      padding: 0.35rem 0.5rem;
-      border-radius: 0.75rem;
-      border: 1px dashed rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      color: rgba(209, 213, 219, 0.96);
-    }
-
-    .emandate-banks span i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    .emandate-number {
-      font-size: 0.75rem;
-      color: rgba(156, 163, 175, 0.96);
-      margin-top: 0.8rem;
-    }
-
-    .award-card {
-      border-radius: 1.1rem;
-      padding: 1rem 1.2rem;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 0.8rem;
-      color: rgba(209, 213, 219, 0.96);
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .award-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.7rem;
-    }
-
-    .award-badge {
-      padding: 0.18rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(22, 163, 74, 0.24);
-      border: 1px solid rgba(34, 197, 94, 0.7);
-      color: #bbf7d0;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      white-space: nowrap;
-    }
-
-    .award-badge i {
-      font-size: 0.7rem;
-    }
-
-    /*-------------------------
-      WHY US / BUSINESS
-    --------------------------*/
-    .business-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.3rem;
-    }
-
-    .business-card {
-      border-radius: 1.2rem;
-      padding: 1.2rem 1.2rem 1.1rem;
-      background: rgba(15, 23, 42, 0.97);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 1);
-      position: relative;
-      overflow: hidden;
-      font-size: 0.8rem;
-      transition: transform var(--transition-med), border var(--transition-med),
-        box-shadow var(--transition-med), background var(--transition-med);
-    }
-
-    .business-card::before {
-      content: "";
-      position: absolute;
-      inset: -50%;
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.15), transparent 55%);
-      opacity: 0;
-      transform: translate3d(-10%, 10%, 0);
-      transition: opacity var(--transition-med), transform var(--transition-med);
-    }
-
-    .business-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(250, 204, 21, 0.7);
-      background: radial-gradient(circle at 0 0, rgba(250, 204, 21, 0.12), #020617);
-      box-shadow: 0 28px 70px rgba(15, 23, 42, 1);
-    }
-
-    .business-card:hover::before {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .business-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.7rem;
-      color: #facc15;
-    }
-
-    .business-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 0.3rem;
-    }
-
-    .business-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .business-foot {
-      font-size: 0.7rem;
-      color: rgba(148, 163, 184, 0.96);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .business-foot span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .business-foot i {
-      font-size: 0.7rem;
-      color: var(--accent-strong);
-    }
-
-    /*-------------------------
-      CONTACT
-    --------------------------*/
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.8rem;
-      align-items: flex-start;
-    }
-
-    .contact-cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.2rem;
-    }
-
-    .contact-card {
-      border-radius: 1rem;
-      padding: 0.9rem 1rem;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.82rem;
-      color: rgba(209, 213, 219, 0.98);
-    }
-
-    .contact-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-strong);
-      flex-shrink: 0;
-    }
-
-    .contact-label {
-      font-size: 0.7rem;
-      color: rgba(148, 163, 184, 0.96);
-    }
-
-    .contact-main {
-      font-size: 0.86rem;
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    /*-------------------------
-      FOOTER
-    --------------------------*/
-    footer {
-      border-top: 1px solid rgba(15, 23, 42, 1);
-      background: radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.08), transparent 45%),
-        radial-gradient(circle at 90% 0%, rgba(250, 204, 21, 0.08), transparent 45%),
-        #020617;
-      padding: 3rem 1.5rem 1.8rem;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.3rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.9fr 0.9fr 1.1fr;
-      gap: 1.8rem;
-      align-items: flex-start;
-    }
-
-    .footer-brand-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .footer-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 1rem;
-      background: radial-gradient(circle at 20% 0%, #facc15, #f97316);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 32px rgba(250, 204, 21, 0.4);
-      font-size: 1.25rem;
-    }
-
-    .footer-brand-text-main {
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #f9fafb;
-    }
-
-    .footer-brand-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(148, 163, 184, 0.9);
-    }
-
-    .footer-tagline {
-      font-size: 0.8rem;
-      color: rgba(148, 163, 184, 0.96);
-      max-width: 260px;
-      line-height: 1.7;
-    }
-
-    .footer-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.18rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.98);
-      font-size: 0.7rem;
-      color: rgba(226, 232, 240, 0.96);
-      width: fit-content;
-    }
-
-    .footer-badge i {
-      color: var(--accent-strong);
-      font-size: 0.8rem;
-    }
-
-    .footer-col-title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(209, 213, 219, 0.98);
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .footer-links-list a {
-      font-size: 0.8rem;
-      color: rgba(148, 163, 184, 0.96);
-      transition: color var(--transition-fast), transform var(--transition-fast);
-      cursor: pointer;
-    }
-
-    .footer-links-list a:hover {
-      color: var(--accent-strong);
-      transform: translateX(3px);
-    }
-
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      font-size: 0.8rem;
-      color: rgba(209, 213, 219, 0.96);
-    }
-
-    .footer-contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
-    }
-
-    .footer-contact-item i {
-      margin-top: 0.08rem;
-      font-size: 0.8rem;
-      color: var(--accent-strong);
-    }
-
-    .footer-contact-label {
-      font-size: 0.72rem;
-      color: rgba(148, 163, 184, 0.96);
-    }
-
-    .footer-contact-main {
-      font-size: 0.83rem;
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    .footer-social-row {
-      margin-top: 0.7rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .footer-social-label {
-      font-size: 0.75rem;
-      color: rgba(148, 163, 184, 0.96);
-    }
-
-    .footer-social-icons {
-      display: flex;
-      gap: 0.45rem;
-    }
-
-    .footer-social-icons a {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.98);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      color: rgba(209, 213, 219, 0.96);
-      transition: transform var(--transition-fast), border var(--transition-fast),
-        color var(--transition-fast), background var(--transition-fast);
-    }
-
-    .footer-social-icons a:hover {
-      transform: translateY(-2px);
-      border-color: rgba(250, 204, 21, 0.9);
-      color: #0b1120;
-      background-image: var(--gradient-accent);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(15, 23, 42, 1);
-      padding-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.76rem;
-      color: rgba(148, 163, 184, 0.96);
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom span strong {
-      color: #e5e7eb;
-    }
-
-    .footer-bottom-links {
-      display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom-links a {
-      font-size: 0.76rem;
-      color: rgba(148, 163, 184, 0.96);
-      transition: color var(--transition-fast), transform var(--transition-fast);
-      cursor: pointer;
-    }
-
-    .footer-bottom-links a:hover {
-      color: var(--accent-strong);
-      transform: translateY(-1px);
-    }
-
-    /*-------------------------
-      SCROLL TO TOP
-    --------------------------*/
-    .scroll-top {
-      position: fixed;
-      right: 1.3rem;
-      bottom: 1.3rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      border: none;
-      background-image: var(--gradient-accent);
-      box-shadow: 0 18px 50px rgba(250, 204, 21, 0.5);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #0b1120;
-      font-size: 1rem;
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(20px);
-      transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.2s ease;
-      z-index: 900;
-    }
-
-    .scroll-top.visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .scroll-top:hover {
-      box-shadow: 0 22px 55px rgba(250, 204, 21, 0.7);
-    }
-
-    /*-------------------------
-      WHATSAPP FLOAT BUTTON
-    --------------------------*/
-    .whatsapp-float {
-      position: fixed;
-      right: 1.3rem;
-      bottom: 4.5rem;
-      width: 50px;
-      height: 50px;
-      border-radius: 999px;
-      border: none;
-      background: #25d366;
-      box-shadow: 0 18px 40px rgba(37, 211, 102, 0.7);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 1.4rem;
-      cursor: pointer;
-      z-index: 900;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 24px 60px rgba(37, 211, 102, 0.85);
-    }
-
-    /*-------------------------
-      ANIMATIONS / REVEAL
-    --------------------------*/
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-
-    /*-------------------------
-      RESPONSIVE
-    --------------------------*/
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .feature-layout,
-      .emandate-grid,
-      .deal-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .hero {
-        padding-top: 3.3rem;
-      }
-
-      .device-card {
-        margin: 0 auto;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.2fr 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .business-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .feature-card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.2fr 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .navbar-inner {
-        padding-inline: 1rem;
-      }
-      .navbar {
-        padding-bottom: 9px;
-        padding-top: 18px;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: var(--nav-height);
-        inset-inline: 0.75rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        border-radius: 1rem;
-        padding: 0.9rem 1rem 1rem;
-        background: rgba(15, 23, 42, 0.98);
-        border: 1px solid rgba(31, 41, 55, 0.9);
-        box-shadow: 0 22px 60px rgba(15, 23, 42, 1);
-        display: none;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .nav-toggle {
-        display: inline-flex;
-      }
-
-      section {
-        padding: 4rem 1rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .business-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-title {
-        font-size: 2.1rem;
-      }
-
-      .hero-sub {
-        font-size: 0.9rem;
-      }
-
-      .hero-badge {
-        font-size: 0.68rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-         .device-layout {
-      margin-top: 12px;
-      display: flex;
-      gap: 1rem;
-      flex-direction: column;
-    }
-    }
-
-    @media (max-width: 480px) {
-      .brand-sub {
-        display: none;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .deal-list {
-        grid-template-columns: 1fr;
-      }
-
-      .scroll-top {
-        right: 1rem;
-        bottom: 1rem;
-      }
-
-      .whatsapp-float {
-        right: 1rem;
-        bottom: 4.2rem;
-      }
-    }
-  </style>
 </head>
+
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="navbar-inner container">
-      <div class="brand" data-scroll-to="#home">
-        <div class="brand-logo">
-          <span><img src="./advance_pay_logo.png" alt="advance pay" style="height:80px;width:80px;"/></span>
-        </div>
-        <div class="brand-text">
-          <div class="brand-title">ADVANCE PAY</div>
-          <div class="brand-sub">MOBILE LOCKER & E-MANDATE</div>
-        </div>
-      </div>
 
-      <nav class="nav-links">
-        <a class="nav-link active" data-scroll-to="#home">Home</a>
-        <a class="nav-link" data-scroll-to="#services">Services</a>
-        <a class="nav-link" data-scroll-to="#features">App Features</a>
-        <a class="nav-link" data-scroll-to="#emandate">E-Mandate</a>
-        <a class="nav-link" data-scroll-to="#business">Partners</a>
-        <a class="nav-link" data-scroll-to="#contact">Contact</a>
-        <button class="nav-cta" data-scroll-to="#contact">
-          Get Demo
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </nav>
 
-      <button class="nav-toggle">
-        <i class="fa-solid fa-bars-staggered"></i>
-      </button>
-    </div>
-  </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-white fixed-top py-3 shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand text-dark" href="#">
+                <img src="img/advance_pay_logo.png" alt="" style="height: 70px; width: 80px;">
+            </a>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-left">
-          <div class="hero-badge">
-            <span class="pill">Advance Locker</span>
-            <span>Trusted EMI & Device Security Platform</span>
-          </div>
-
-          <h1 class="hero-title">
-            Complete <span class="highlight">Mobile Locker & Auto-Pay</span>
-            solution for modern finance & electronics businesses.
-          </h1>
-
-          <p class="hero-sub">
-            Lock, track and manage Android, iPhone, running phones & TVs with
-            RBI-approved e-mandate (Auto Pay) – advance EMI collection, civil
-            score support, insurance & anti-theft features in one powerful
-            dashboard.
-          </p>
-
-          <div class="hero-pills">
-            <div class="hero-pill">
-              <i class="fa-solid fa-shield"></i>
-              Secure EMI Collection
-            </div>
-            <div class="hero-pill">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-              Android / iOS / Old Phones
-            </div>
-            <div class="hero-pill">
-              <i class="fa-solid fa-indian-rupee-sign"></i>
-              RBI Approved E-Mandate (ENACH & UPI)
-            </div>
-            <div class="hero-pill">
-              <i class="fa-solid fa-headset"></i>
-              24/7 Dealer Support
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <button class="btn-primary" data-scroll-to="#contact">
-              Book Free Demo
-              <i class="fa-solid fa-arrow-right"></i>
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="btn-ghost" data-scroll-to="#features">
-              <i class="fa-solid fa-circle-play"></i>
-              Explore App Features
-            </button>
-          </div>
 
-          <div class="hero-footnote">
-            <span class="dot"></span>
-            <span>Smart locker + Auto-pay + EMI tools in a single Advance Pay application.</span>
-          </div>
-        </div>
+            <!-- Links & Button -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feature.html">Feature</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                </ul>
 
-        <div class="hero-right">
-          <div class="hero-orbit">
-            <div class="hero-orbit-circle"></div>
-            <div class="hero-orbit-circle"></div>
-            <div class="hero-orbit-circle"></div>
-          </div>
-
-          <div class="device-card">
-            <div class="device-tag">
-              <span class="dot"></span>
-              Live Device Linked
-            </div>
-
-            <div class="device-layout ">
-              <div class="device-phone">
-                <div class="device-phone-inner">
-                  <div>
-                    <div class="phone-status-row">
-                      <div class="phone-status-pill">
-                        <span></span>
-                        Online • Locker Active
-                      </div>
-                      <div class="phone-signal-dots">
-                        <span></span><span></span><span></span><span></span>
-                      </div>
-                    </div>
-
-                    <div class="phone-main">
-                      <h3>Advance Locker</h3>
-                      <p>EMI Protected • Anti-Theft • Auto Lock</p>
-                    </div>
-
-                    <div class="phone-metrics">
-                      <div class="phone-metric">
-                        <label>Next EMI</label>
-                        <span>₹ 4,250</span>
-                      </div>
-                      <div class="phone-metric">
-                        <label>Status</label>
-                        <span>On-Track</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="phone-actions">
-                      <button class="phone-btn primary">
-                        <i class="fa-solid fa-lock"></i>
-                        Lock Now
-                      </button>
-                      <button class="phone-btn ghost">
-                        <i class="fa-solid fa-location-dot"></i>
-                        Live Location
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="device-meta">
+                <!-- Sign Up Button (Right) -->
                 <div>
-                  <h4>Smart EMI Locker</h4>
-                  <p>
-                    Auto reminder, auto payment collect, bulk lock/unlock and
-                    complete device control – even offline.
-                  </p>
+                    <a href="#" class="btn navbtn text-white px-4">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-                  <div class="device-badges">
-                    <div class="device-badge">
-                      <i class="fa-solid fa-mobile-screen-button"></i>
-                      Android / iPhone / TV Locker
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center min-vh-100">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Text Column (Left) -->
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <h1 class="hero-title">The Future of Digital <br> Payments is Here</h1>
+                    <p class="hero-text">
+                        Experience seamless, secure, and instant transactions anytime, anywhere. Join millions who trust
+                        us to simplify their financial life.
+                    </p>
+
+                    <div class="d-flex flex-md-row flex-column gap-3 hero-btns">
+                        <a href="#" class="btn btn-primary-custom text-white">Create Free Account</a>
+                        <a href="#" class="btn btn-light-custom">See How It Works</a>
                     </div>
-                    <div class="device-badge">
-                      <i class="fa-solid fa-credit-card"></i>
-                      UPI & ENACH e-Mandate
+                </div>
+
+                <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                    <img src="img/Payments-Ecosystem.jpg"
+                        alt="Global Network" class="hero-img">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section bg-white">
+        <div class="container py-4">
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title mb-3">Everything you need in a modern payment platform.</h2>
+                    <p class="section-subtitle text-muted">
+                        We provide a robust set of features to ensure your financial transactions are fast, safe, and
+                        easy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="feature-card h-100 text-center p-4">
+                        <div class="icon-wrapper mx-auto mb-3">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <h5 class="feature-title">Instant Transfers</h5>
+                        <p class="feature-text text-muted">
+                            Send and receive money in seconds, without any delays.
+                        </p>
                     </div>
-                    <div class="device-badge">
-                      <i class="fa-solid fa-shield-halved"></i>
-                      Anti Theft + Insurance
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="feature-card h-100 text-center p-4">
+                        <div class="icon-wrapper mx-auto mb-3">
+                            <i class="bi bi-shield-fill-check"></i>
+                        </div>
+                        <h5 class="feature-title">Ironclad Security</h5>
+                        <p class="feature-text text-muted">
+                            Your data is protected with end-to-end encryption.
+                        </p>
                     </div>
-                  </div>
                 </div>
 
-                <div class="device-stats">
-                  <div class="device-stat">
-                    <label>Devices Secured</label>
-                    <span>12,540+</span>
-                  </div>
-                  <div class="device-stat">
-                    <label>Collection Success</label>
-                    <span>96.7%</span>
-                  </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="feature-card h-100 text-center p-4">
+                        <div class="icon-wrapper mx-auto mb-3">
+                            <i class="bi bi-globe-americas"></i>
+                        </div>
+                        <h5 class="feature-title">Global Reach</h5>
+                        <p class="feature-text text-muted">
+                            Make payments to anyone, anywhere in the world.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="device-footer">
-                  <span>EMI Pause • Retry • Penalty & Interest management</span>
-                  <span class="badge">
-                    <i class="fa-solid fa-shield-heart"></i>
-                    RBI Approved Flow
-                  </span>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="feature-card h-100 text-center p-4">
+                        <div class="icon-wrapper mx-auto mb-3">
+                            <i class="bi bi-piggy-bank-fill"></i>
+                        </div>
+                        <h5 class="feature-title">Low Fees</h5>
+                        <p class="feature-text text-muted">
+                            Keep more of your money with our competitive rates.
+                        </p>
+                    </div>
                 </div>
-              </div>
+
             </div>
-          </div>
         </div>
-      </div> 
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section-dark">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <div class="section-kicker">
-            <span class="section-kicker-dot"></span>
-            Mobile Locker Services
-          </div>
-          <h2 class="section-title">
-            Locker solutions for every device & every EMI model.
-          </h2>
-          <p class="section-subtitle">
-            From brand-new flagship phones to old running devices & TVs – Advance
-            Pay protects your EMI portfolio using smart lock technology, civil
-            support and insurance options.
-          </p>
-        </div>
+    <section class="py-5 overflow-hidden">
+        <div class="container my-5">
+            <div class="row align-items-center">
 
-        <div class="services-grid">
-          <!-- 1 Android -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-brands fa-android"></i>
-            </div>
-            <div class="service-tagline">Android Phone Locker</div>
-            <h3 class="service-title">New Android EMI Locker</h3>
-            <p class="service-desc">
-              Lock entire Android phone when EMI is due, auto unlock after
-              payment. Offline lock/unlock, app hide/unhide and complete control
-              for finance & mobile shops.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-lock"></i>
-                Full device lock
-              </div>
-              <span>Auto reminder • Auto collect</span>
-            </div>
-          </article>
+                <div class="col-lg-6 text-content pe-lg-5">
+                    <h6 class="text-primary fw-bold text-uppercase ls-1">Smart Payroll</h6>
+                    <h1 class="display-5 fw-bold text-dark mb-4">
+                        Automate your team's salary, bonuses & expenses.
+                    </h1>
 
-          <!-- 2 iPhone -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-brands fa-apple"></i>
-            </div>
-            <div class="service-tagline">iPhone Locker</div>
-            <h3 class="service-title">Premium iOS Locker</h3>
-            <p class="service-desc">
-              Secure your iPhone EMI with advanced lock controls, screen PIN
-              update, wallpaper change and social app lock/unlock for premium
-              customers.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-mobile-screen"></i>
-                iOS Optimized
-              </div>
-              <span>Civil score friendly</span>
-            </div>
-          </article>
+                    <p class="lead text-muted mb-4">
+                        Stop using spreadsheets. Handle payroll, track advances, and generate instant payslips all from
+                        one dashboard.
+                    </p>
 
-          <!-- 3 Running (Old) -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-rotate-right"></i>
-            </div>
-            <div class="service-tagline">Running / Old Phone Locker</div>
-            <h3 class="service-title">Convert Old Phones into EMI Assets</h3>
-            <p class="service-desc">
-              Already running phone par bhi locker – without full reset
-              installation. Keep customer data safe while protecting your EMI
-              collection.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-circle-nodes"></i>
-                Without reset install
-              </div>
-              <span>Bulk lock/unlock ready</span>
-            </div>
-          </article>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success fs-5 me-3"></i>
+                            <span class="text-secondary">Instant salary calculations based on hourly or fixed
+                                rates.</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success fs-5 me-3"></i>
+                            <span class="text-secondary">Track loans, advances, and automatic deductions
+                                effortlessly.</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success fs-5 me-3"></i>
+                            <span class="text-secondary">Generate PDF payslips and send them via WhatsApp or
+                                Email.</span>
+                        </li>
+                    </ul>
 
-          <!-- 4 TV Locker -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-tv"></i>
-            </div>
-            <div class="service-tagline">TV Locker</div>
-            <h3 class="service-title">Smart TV EMI Control</h3>
-            <p class="service-desc">
-              Smart TV locker ke through unpaid EMI par screen block, input lock,
-              or app lock – payment clear hote hi auto unlock experience.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-tv"></i>
-                Multi-brand support
-              </div>
-              <span>Dealer friendly dashboard</span>
-            </div>
-          </article>
-
-          <!-- 5 E-Mandate -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-indian-rupee-sign"></i>
-            </div>
-            <div class="service-tagline">E-Mandate (Auto Pay)</div>
-            <h3 class="service-title">Auto Payment Collection</h3>
-            <p class="service-desc">
-              UPI e-mandate, Aadhar (ENACH), ATM card (ENACH) & net banking
-              (ENACH) – EMI auto pay, auto collect with pause & retry options.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-building-columns"></i>
-                RBI Approved
-              </div>
-              <span>Fail-safe EMI flow</span>
-            </div>
-          </article>
-
-          <!-- 6 Anti Theft -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-user-shield"></i>
-            </div>
-            <div class="service-tagline">Anti Theft Suite</div>
-            <h3 class="service-title">Track • Lock • Protect</h3>
-            <p class="service-desc">
-              Get online/offline location, SIM change alert, USB/internet/location
-              block, remote reboot & reset options to secure your portfolio.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-location-crosshairs"></i>
-                Live tracking
-              </div>
-              <span>Risk control focused</span>
-            </div>
-          </article>
-
-          <!-- 7 Civil Score -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-chart-line"></i>
-            </div>
-            <div class="service-tagline">Civil Score</div>
-            <h3 class="service-title">Customer Civil Score Support</h3>
-            <p class="service-desc">
-              Clean EMI records, digital agreement & clear tracking – better civil
-              score for customers, healthier portfolio for lenders & dealers.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-file-signature"></i>
-                Digital agreement
-              </div>
-              <span>Paperless KYC & docs</span>
-            </div>
-          </article>
-
-          <!-- 8 Insurance -->
-          <article class="service-card reveal-up">
-            <div class="service-icon">
-              <i class="fa-solid fa-umbrella"></i>
-            </div>
-            <div class="service-tagline">Insurance Add-Ons</div>
-            <h3 class="service-title">Damage & Theft Insurance</h3>
-            <p class="service-desc">
-              Bundle device insurance with locker & EMI plans – reduce risk and
-              give peace of mind to both dealer & customer.
-            </p>
-            <div class="service-meta-line">
-              <div class="service-meta-chip">
-                <i class="fa-solid fa-shield-heart"></i>
-                Device + EMI safety
-              </div>
-              <span>Customizable plans</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEAL TYPES / PARTNERSHIP -->
-    <section id="business" class="section-darker">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <div class="section-kicker">
-            <span class="section-kicker-dot"></span>
-            Partner Programs
-          </div>
-          <h2 class="section-title">
-            We deal in dealership, distributorship, super stockist & API.
-          </h2>
-          <p class="section-subtitle">
-            Advance Pay is built for mobile shops, finance companies, NBFCs,
-            distributors & technology partners – scale your portfolio with our
-            white-label solutions.
-          </p>
-        </div>
-
-        <div class="deal-grid">
-          <div class="deal-left reveal-up">
-            <p>
-              Choose how you want to work with Advance Pay. Whether you are a
-              single showroom, multi-city distributor, super stockist or fintech
-              platform – our locker & e-mandate engine can be branded as your own.
-            </p>
-
-            <div class="deal-badges">
-              <div class="deal-badge">
-                <span></span> Dealership
-              </div>
-              <div class="deal-badge">
-                <span></span> Distributorship
-              </div>
-              <div class="deal-badge">
-                <span></span> Super Stockist
-              </div>
-              <div class="deal-badge">
-                <span></span> White-Label Brand
-              </div>
-              <div class="deal-badge">
-                <span></span> API Integration
-              </div>
-            </div>
-          </div>
-
-          <div class="deal-card reveal-up">
-            <h4>Grow with Advance Pay network</h4>
-            <p>
-              Plug-and-play API, powerful web dashboard & customized branding
-              options help you launch your own locker + e-mandate product in days,
-              not months.
-            </p>
-
-            <ul class="deal-list">
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Dealer & staff login with role-based access
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Multiple branches & franchise support
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                White-label Android APK & web panel
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Full API integration for your own app
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Dedicated onboarding & 24/7 support
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                EMI analytics & collection reports
-              </li>
-            </ul>
-
-            <button class="btn-primary" data-scroll-to="#contact">
-              Become a Partner
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-        <div style="height: 2rem;"></div>
-
-        <!-- Why choose us cards -->
-        <div class="business-grid">
-          <article class="business-card reveal-up">
-            <div class="business-icon">
-              <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <h3 class="business-title">One App – Full Control</h3>
-            <p class="business-desc">
-              Auto reminder, auto payment collect, auto lock, offline lock/unlock,
-              bulk lock/unlock, advertisement push & more – sab kuch ek hi panel se.
-            </p>
-            <div class="business-foot">
-              <span>
-                <i class="fa-solid fa-mobile"></i>
-                10K+ devices managed
-              </span>
-              <span>Unified dashboard</span>
-            </div>
-          </article>
-
-          <article class="business-card reveal-up">
-            <div class="business-icon">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3 class="business-title">Enterprise-grade Security</h3>
-            <p class="business-desc">
-              Social media & camera lock, app hide/unhide, USB / location /
-              internet block, SIM change alert & safe reset customer mobile options.
-            </p>
-            <div class="business-foot">
-              <span>
-                <i class="fa-solid fa-lock"></i>
-                Deep device controls
-              </span>
-              <span>Anti-fraud layer</span>
-            </div>
-          </article>
-
-          <article class="business-card reveal-up">
-            <div class="business-icon">
-              <i class="fa-solid fa-headset"></i>
-            </div>
-            <h3 class="business-title">24/7 Dealer Support</h3>
-            <p class="business-desc">
-              Dedicated support team, dealer feedback system & continuous updates –
-              taaki aapka business kabhi ruk na jaye.
-            </p>
-            <div class="business-foot">
-              <span>
-                <i class="fa-solid fa-star"></i>
-                24/7 support
-              </span>
-              <span>Feedback-driven roadmap</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- APP FEATURES -->
-    <section id="features" class="section-dark">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <div class="section-kicker">
-            <span class="section-kicker-dot"></span>
-            App Features
-          </div>
-          <h2 class="section-title">
-            Power-packed features designed for EMI, finance & security.
-          </h2>
-          <p class="section-subtitle">
-            Your complete toolkit: from EMI management & device control to digital
-            documentation, marketing & customer support – all built into Advance Pay.
-          </p>
-        </div>
-
-        <div class="feature-layout">
-          <div class="reveal-up">
-            <div class="feature-pill-row">
-              <div class="feature-pill">
-                <i class="fa-solid fa-bell"></i>
-                Auto reminder & follow-up
-              </div>
-              <div class="feature-pill">
-                <i class="fa-solid fa-indian-rupee-sign"></i>
-                Auto payment collect (E-Mandate)
-              </div>
-              <div class="feature-pill">
-                <i class="fa-solid fa-lock"></i>
-                Auto lock & offline lock/unlock
-              </div>
-              <div class="feature-pill">
-                <i class="fa-solid fa-location-crosshairs"></i>
-                Online / offline location
-              </div>
-              <div class="feature-pill">
-                <i class="fa-solid fa-phone"></i>
-                Get phone number & lock status
-              </div>
-            </div>
-
-            <p class="feature-note">
-              Plus: social media lock/unlock, camera lock, change screen wallpaper,
-              change screen PIN & password, app hide/unhide, reset customer password,
-              reboot customer mobile, SIM change alert & much more…
-            </p>
-          </div>
-
-          <div class="feature-card-grid">
-            <!-- Block 1: Device Control -->
-            <article class="feature-card reveal-up">
-              <div class="feature-card-header">
-                <div class="feature-card-title">Smart Device Control</div>
-                <div class="feature-card-chip">Locker Engine</div>
-              </div>
-              <ul>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Auto lock / unlock based on EMI status
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Offline lock/unlock – internet na ho tab bhi control
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Social media & camera lock/unlock
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Change wallpaper, PIN & password remotely
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  App hide/unhide & reset customer password
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Reboot customer mobile from panel
-                </li>
-              </ul>
-            </article>
-
-            <!-- Block 2: EMI & Finance -->
-            <article class="feature-card reveal-up">
-              <div class="feature-card-header">
-                <div class="feature-card-title">EMI & Finance Tools</div>
-                <div class="feature-card-chip">EMI Suite</div>
-              </div>
-              <ul>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Add EMI details & full loan info
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Create & view complete installment schedule
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Add penalty options for late payments
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Add interest & file charge options
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  EMI pause & retry option for special cases
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Bulk lock/unlock for full batches
-                </li>
-              </ul>
-            </article>
-
-            <!-- Block 3: Data & Docs -->
-            <article class="feature-card reveal-up">
-              <div class="feature-card-header">
-                <div class="feature-card-title">Documents & Agreements</div>
-                <div class="feature-card-chip">Digital Stack</div>
-              </div>
-              <ul>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Store all customer documents securely
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Customer digital agreement management
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Without reset installation support
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Confirm lock status at any time
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Get online/offline location & phone number
-                </li>
-              </ul>
-            </article>
-
-            <!-- Block 4: Marketing & Support -->
-            <article class="feature-card reveal-up">
-              <div class="feature-card-header">
-                <div class="feature-card-title">Marketing & Support</div>
-                <div class="feature-card-chip">Growth & Care</div>
-              </div>
-              <ul>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Send your advertisement directly to customer phones
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  Block/unblock USB, location & internet
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  SIM change alert & block reset option
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  24/7 customer support & dealer feedback
-                </li>
-                <li>
-                  <i class="fa-solid fa-circle-check"></i>
-                  EMI analytics & locker performance reports
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- E-MANDATE / RBI APPROVED -->
-    <section id="emandate" class="section-darker">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <div class="section-kicker">
-            <span class="section-kicker-dot"></span>
-            E-Mandate & Auto Pay
-          </div>
-          <h2 class="section-title">
-            RBI-approved e-mandate for auto collection with full control.
-          </h2>
-          <p class="section-subtitle">
-            Automate EMI collection using UPI e-mandate, Aadhar (ENACH), card
-            (ENACH) & net banking (ENACH) – with pause, retry & locker-level
-            automation built in.
-          </p>
-        </div>
-
-        <div class="emandate-grid">
-          <div class="emandate-card reveal-up">
-            <div class="d-flex flex-md-row flex-column ">
-              <div>
-                <div class="emandate-logo-pill">
-                  <span></span>
-                  RBI Aligned E-Mandate Flow
+                    <button class="btn btn-primary btn-lg mt-3 rounded-pill px-4">Get Started Free</button>
                 </div>
-                <h3 class="section-title" style="font-size: 1.2rem; margin-top: 0.4rem;">
-                  Auto pay, auto collect, auto secure.
-                </h3>
-                <p class="section-subtitle" style="margin-top: 0.4rem;">
-                  Configure EMI rules once – Advance Pay handles auto reminders,
-                  auto debit attempts, locker actions and follow-up sync with your
-                  team.
+
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="mockup-wrapper">
+                        <img src="img/imgapp3.webp" alt="webapp mockup" class=" w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="security-section bg-white">
+        <div class="container py-4">
+            <div class="row align-items-center">
+
+                <!-- Left Column: Text & Features -->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title mb-3">Your security is our priority.</h2>
+                    <p class="section-subtitle text-muted mb-5">
+                        We use state-of-the-art security measures to protect your information and transactions, so you
+                        can have peace of mind.
+                    </p>
+
+                    <!-- Feature List -->
+                    <div class="d-flex flex-column gap-4">
+
+                        <!-- Item 1 -->
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0">
+                                <i class="bi bi-check-circle text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold mb-1">End-to-End Encryption</h5>
+                                <p class="text-muted mb-0 small-text">
+                                    All data is encrypted in transit and at rest, ensuring your sensitive information is
+                                    never exposed.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0">
+                                <i class="bi bi-check-circle text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold mb-1">Proactive Fraud Monitoring</h5>
+                                <p class="text-muted mb-0 small-text">
+                                    Our systems work 24/7 to detect and prevent fraudulent activity on your account.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0">
+                                <i class="bi bi-check-circle text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="fw-bold mb-1">Regulatory Compliance</h5>
+                                <p class="text-muted mb-0 small-text">
+                                    We adhere to the highest industry standards for security and data protection.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Graphic -->
+                <div class="col-lg-6 text-center">
+                    <div class="security-visual mx-auto">
+                        <div class="shield-circle">
+                            <img src="img/imgapp2.webp" alt="" class="w-100 h-100 object-fit-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container py-5">
+
+        <div class="text-center mb-5 section-slider ">
+            <h2>Trusted by Industry Leaders</h2>
+            <p class="text-muted">Hear from our happy partners who have achieved great results with us.</p>
+        </div>
+
+        <div class="swiper testimonial-slider py-4 my-3">
+            <div class="swiper-wrapper py-5 px-4">
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <p class="testimonial-text">
+                            Working with this team has been a game-changer for our business. Their dedication and
+                            innovative solutions have directly contributed to our significant growth in the last
+                            quarter.
+                        </p>
+
+                        <div class="d-flex align-items-center">
+                            <img src="img/testimg.jpg" alt="Sarah Chen" class="author-img me-3">
+                            <div>
+                                <h5 class="author-name">Sarah Chen</h5>
+                                <span class="author-role">CEO of Innovate Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+
+
+    <section class="cta-section ">
+        <div class="d-flex justify-content-center align-items-center "
+            style="background-color: #e4e1fe; padding-bottom: 77px; padding-top: 77px; ">
+
+            <div class="container rounded-4 custom-blue-bg text-white text-center p-5 shadow-sm"
+                style="max-width: 900px;">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+                        <!-- Headline -->
+                        <h2 class="fw-bold mb-3 display-6">Ready to simplify your payments?</h2>
+
+                        <!-- Subtext -->
+                        <p class="mb-4 fs-6" style="opacity: 0.9;">
+                            Create an account in minutes and start sending and receiving money with ease. No hidden
+                            fees, no complex setups.
+                        </p>
+
+                        <!-- Button -->
+                        <!-- btn-light creates the white background -->
+                        <a href="#" class="btn btn-light text-custom-blue fw-bold px-4 py-2">
+                            Sign Up Now
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<footer class="bg-white pt-5 pb-4 border-top">
+    <div class="container">
+        <div class="row">
+
+            <!-- 1. Logo, Description & CONTACT INFO (Updated) -->
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="img/advance_pay_logo.png" alt="" style="height: 70px; width: 80px;" />
+                </div>
+                <p class="text-muted small" style="max-width: 300px; line-height: 1.6;">
+                    Effortlessly control, track, and manage your payments in one place.
                 </p>
 
-                <div class="emandate-chip-row">
-                  <div class="emandate-chip">
-                    <i class="fa-solid fa-indian-rupee-sign"></i>
-                    UPI e-mandate
-                  </div>
-                  <div class="emandate-chip">
-                    <i class="fa-solid fa-id-card"></i>
-                    Aadhar (ENACH) e-mandate
-                  </div>
-                  <div class="emandate-chip">
-                    <i class="fa-solid fa-credit-card"></i>
-                    ATM Card (ENACH) e-mandate
-                  </div>
-                  <div class="emandate-chip">
-                    <i class="fa-solid fa-network-wired"></i>
-                    Net Banking (ENACH) e-mandate
-                  </div>
+
+            </div>
+
+
+            <!-- 2. Product Column -->
+            <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                <div class="text-uppercase footer-heading">Product</div>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="feature.html" class="footer-link">Features</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Pricing</a></li>
+                    <li class="mb-2"><a href="service.html" class="footer-link">Service</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Integrations</a></li>
+                </ul>
+            </div>
+
+            <!-- 3. Company Column -->
+            <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                <div class="text-uppercase footer-heading">Company</div>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="footer-link">About Us</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Careers</a></li>
+                    <li class="mb-2"><a href="contactus.html" class="footer-link">Contact</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- 4. Legal Column -->
+            <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                <div class="text-uppercase footer-heading">Legal</div>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Terms of Service</a></li>
+                    <li class="mb-2"><a href="#" class="footer-link">Cookie Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- 5. Follow Us Column -->
+            <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                    <div class="text-uppercase footer-heading">Follow Us</div>
+                  <div class="mt-4">
+                    <!-- Address -->
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="text-primary mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                            </svg>
+                        </div>
+                        <span class="ms-2 text-muted small">
+                             H/N 15 ground floor new bajrangpura Indore (MP)452015
+                        </span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                            </svg>
+                        </div>
+                        <a href="tel:+919876543210" class="ms-2 text-muted small text-decoration-none footer-link">
+                            +91 98765 43210
+                        </a>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="d-flex align-items-center">
+                        <div class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                            </svg>
+                        </div>
+                        <a href="mailto:support@advancepay.com" class="ms-2 text-muted small text-decoration-none footer-link">
+                            support@advancepay.com
+                        </a>
+                    </div>
                 </div>
 
-                <p class="emandate-number">
-                  • EMI pause & retry option | • Smart retry logic | • Full
-                  reporting for success & bounce.
+               
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" class="footericon">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="footericon">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="footericon">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright Section -->
+        <div class="row mt-5 pt-4 border-top">
+            <div class="col-12 text-center">
+                <p class="text-muted small mb-0">
+                    Copyright@ 2020 Advance Digital Technology
                 </p>
-              </div>
-
-              <div>
-                <div class="emandate-banks">
-                  <span>
-                    <i class="fa-solid fa-building-columns"></i>
-                    Multi-Bank Support
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-gauge-high"></i>
-                    High Success Rate Flows
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-shield-heart"></i>
-                    Secure Encryption
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-file-circle-check"></i>
-                    RBI-guideline Ready
-                  </span>
-                </div>
-
-                <div style="height: 0.9rem;"></div>
-
-                <div class="award-card">
-                  <div class="award-card-header">
-                    <span>EMI + Locker + E-Mandate in one engine.</span>
-                    <span class="award-badge">
-                      <i class="fa-solid fa-award"></i>
-                      Autopay Suite
-                    </span>
-                  </div>
-                  <p>
-                    Combine device lock with auto debit – so EMI failures are
-                    immediately connected with locker action, alerts & support
-                    workflows.
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <div class="reveal-up">
-            <div class="award-card" style="margin-bottom: 0.9rem;">
-              <div class="award-card-header">
-                <span>End-to-end risk reduction.</span>
-                <span class="award-badge">
-                  <i class="fa-solid fa-chart-column"></i>
-                  Collection First
-                </span>
-              </div>
-              <p>
-                From first EMI to last – Advance Pay keeps your portfolio live with
-                auto reminders, smart locker control, digital documentation and
-                strong civil behaviour for customers.
-              </p>
-            </div>
-
-            <div class="award-card">
-              <div class="award-card-header">
-                <span>Engineered for growth.</span>
-                <span class="award-badge">
-                  <i class="fa-solid fa-arrow-trend-up"></i>
-                  Scale Ready
-                </span>
-              </div>
-              <p>
-                Whether you handle 100 devices or 1,00,000+, our APIs, dashboards
-                and automation rules adapt to your business without slowing you
-                down.
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section-dark">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <div class="section-kicker">
-            <span class="section-kicker-dot"></span>
-            Contact & Demo
-          </div>
-          <h2 class="section-title">
-            Ready to see Advance Pay live for your business?
-          </h2>
-          <p class="section-subtitle">
-            Connect with us for dealership, distributorship, super stockist,
-            white-label or API integration. We’ll help you design the right plan
-            for your city & portfolio.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="reveal-up">
-            <div class="contact-cards">
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fa-solid fa-phone-volume"></i>
-                </div>
-                <div>
-                  <div class="contact-label">Call / WhatsApp</div>
-                  <div class="contact-main">+91 81092 65654</div>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-                <div>
-                  <div class="contact-label">Email</div>
-                  <div class="contact-main">Advance.locker@gmail.com</div>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fa-solid fa-users-gear"></i>
-                </div>
-                <div>
-                  <div class="contact-label">Service & Support</div>
-                  <div class="contact-main">
-                    24/7 Customer & Dealer Support • Feedback based updates
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Form removed as requested -->
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner reveal-up">
-      <div class="footer-grid">
-        <!-- Brand + tagline -->
-        <div class="footer-brand-block">
-          <div class="footer-brand">
-            
-             <div class="brand" data-scroll-to="#home">
-        <div class="brand-logo">
-          <span><img src="./advance_pay_logo.png" alt="advance pay" style="height:80px;width:80px;"/></span>
-        </div>
-        <div class="brand-text ">
-          <div class="brand-title">ADVANCE PAY</div>
-          <div class="brand-sub">MOBILE LOCKER & E-MANDATE</div>
-        </div>
-      </div>
-            </div>
-           
-          
-          <p class="footer-tagline">
-            Smart locker + e-mandate + EMI engine for mobile shops, finance companies and distributors.
-          </p>
-          <div class="footer-badge">
-            <i class="fa-solid fa-shield-halved"></i>
-            RBI Aligned • Dealer First
-          </div>
-        </div>
-
-        <!-- Quick links -->
-        <div>
-          <div class="footer-col-title">Quick Links</div>
-          <ul class="footer-links-list">
-            <li><a data-scroll-to="#home">Home</a></li>
-            <li><a data-scroll-to="#services">Services</a></li>
-            <li><a data-scroll-to="#features">App Features</a></li>
-            <li><a data-scroll-to="#emandate">E-Mandate</a></li>
-            <li><a data-scroll-to="#business">Partner Programs</a></li>
-            <li><a data-scroll-to="#contact">Contact & Demo</a></li>
-          </ul>
-        </div>
-
-        <!-- Services -->
-        <div>
-          <div class="footer-col-title">Locker & Auto-Pay</div>
-          <ul class="footer-links-list">
-            <li><a data-scroll-to="#services">Android Phone Locker</a></li>
-            <li><a data-scroll-to="#services">iPhone Locker</a></li>
-            <li><a data-scroll-to="#services">Running / Old Phone Locker</a></li>
-            <li><a data-scroll-to="#services">Smart TV Locker</a></li>
-            <li><a data-scroll-to="#emandate">UPI & ENACH E-Mandate</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact & socials -->
-        <div>
-          <div class="footer-col-title">Contact</div>
-          <div class="footer-contact">
-            <div class="footer-contact-item">
-              <i class="fa-solid fa-phone-volume"></i>
-              <div>
-                <div class="footer-contact-label">Call / WhatsApp</div>
-                <div class="footer-contact-main">+91 81092 65654</div>
-              </div>
-            </div>
-            <div class="footer-contact-item">
-              <i class="fa-solid fa-envelope-open-text"></i>
-              <div>
-                <div class="footer-contact-label">Email</div>
-                <div class="footer-contact-main">Advance.locker@gmail.com</div>
-              </div>
-            </div>
-            <div class="footer-contact-item">
-              <i class="fa-solid fa-users-gear"></i>
-              <div>
-                <div class="footer-contact-label">Support</div>
-                <div class="footer-contact-main">24/7 Customer & Dealer Support</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-social-row">
-            <span class="footer-social-label">Follow us</span>
-            <div class="footer-social-icons">
-              <a href="javascript:void(0)" aria-label="WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-              <a href="javascript:void(0)" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-              </a>
-              <a href="javascript:void(0)" aria-label="Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>
-          © <strong>Advance Pay</strong> – Mobile Locker & E-Mandate Solutions. All rights reserved.
-        </span>
-        <div class="footer-bottom-links">
-          <a href="javascript:void(0)">Terms & Conditions</a>
-          <a href="javascript:void(0)">Privacy Policy</a>
-          <a href="javascript:void(0)">Refund Policy</a>
-        </div>
-      </div>
     </div>
-  </footer>
+</footer>
 
-  <!-- WhatsApp floating button -->
-  <button class="whatsapp-float" id="whatsappBtn" aria-label="Chat on WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </button>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Scroll to top -->
-  <button class="scroll-top" id="scrollTopBtn">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- JS: NAV, SCROLL, GSAP ANIMATIONS -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const navbar = document.querySelector(".navbar");
-      const navLinksContainer = document.querySelector(".nav-links");
-      const navToggle = document.querySelector(".nav-toggle");
-      const scrollTopBtn = document.getElementById("scrollTopBtn");
-      const scrollTriggers = document.querySelectorAll("[data-scroll-to]");
-      const whatsappBtn = document.getElementById("whatsappBtn");
+    <!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".testimonial-slider", {
+        slidesPerView: 2.3,
+        spaceBetween: 40,
+        loop: true,
+        centeredSlides: true,
 
-      // Smooth scroll handler
-      function smoothScrollTo(target) {
-        const el = document.querySelector(target);
-        if (!el) return;
-        const offset = navbar.offsetHeight + 10;
-        const rect = el.getBoundingClientRect();
-        const scrollTop = window.scrollY || window.pageYOffset;
-        const targetPosition = rect.top + scrollTop - offset;
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
 
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-
-      scrollTriggers.forEach((el) => {
-        el.addEventListener("click", () => {
-          const target = el.getAttribute("data-scroll-to");
-          if (target) {
-            smoothScrollTo(target);
-            navLinksContainer.classList.remove("open");
-          }
-        });
-      });
-
-      // Update navbar on scroll
-      function handleScroll() {
-        const scrollY = window.scrollY || window.pageYOffset;
-        if (scrollY > 40) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-
-        // Show scroll to top
-        if (scrollY > 260) {
-          scrollTopBtn.classList.add("visible");
-        } else {
-          scrollTopBtn.classList.remove("visible");
-        }
-
-        // Active nav link
-        const sections = ["#home", "#services", "#features", "#emandate", "#business", "#contact"].map(
-          (id) => document.querySelector(id)
-        );
-
-        let currentId = "#home";
-        const offset = navbar.offsetHeight + 60;
-
-        sections.forEach((section) => {
-          if (!section) return;
-          const top = section.offsetTop - offset;
-          if (window.scrollY >= top) {
-            currentId = "#" + section.id;
-          }
-        });
-
-        document.querySelectorAll(".nav-link").forEach((link) => {
-          const target = link.getAttribute("data-scroll-to");
-          if (target === currentId) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }
-
-      window.addEventListener("scroll", handleScroll);
-      handleScroll();
-
-      // Nav toggle (mobile)
-      navToggle.addEventListener("click", () => {
-        navLinksContainer.classList.toggle("open");
-      });
-
-      // Scroll top button
-      scrollTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      // WhatsApp button click
-      whatsappBtn.addEventListener("click", () => {
-        window.open(
-          "https://wa.me/918109265654?text=Hi%20Advance%20Pay%2C%20I%20want%20to%20know%20more%20about%20your%20locker%20%2B%20e-mandate%20services.",
-          "_blank"
-        );
-      });
-
-      // GSAP animations
-      if (window.gsap) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero intro
-        const heroTl = gsap.timeline({ delay: 0.1 });
-        heroTl
-          .from(".navbar", {
-            y: -40,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power3.out",
-          })
-          .from(
-            ".hero-badge",
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out",
+        // ⭐ Breakpoints for responsiveness
+        breakpoints: {
+            320: {        // Mobile
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                centeredSlides: false,
             },
-            "-=0.3"
-          )
-          .from(
-            ".hero-title",
-            {
-              y: 30,
-              opacity: 0,
-              duration: 0.6,
-              ease: "power2.out",
+            640: {        // Small devices
+                slidesPerView: 1.3,
+                spaceBetween: 25,
             },
-            "-=0.2"
-          )
-          .from(
-            ".hero-sub",
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out",
+            768: {        // Tablets
+                slidesPerView: 1.8,
+                spaceBetween: 30,
             },
-            "-=0.3"
-          )
-          .from(
-            ".hero-pills .hero-pill",
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.4,
-              stagger: 0.05,
-              ease: "power2.out",
+            1024: {       // Laptop
+                slidesPerView: 2.3,
+                spaceBetween: 40,
             },
-            "-=0.3"
-          )
-          .from(
-            ".hero-actions .btn-primary, .hero-actions .btn-ghost",
-            {
-              y: 20,
-              opacity: 0,
-              duration: 0.5,
-              stagger: 0.1,
-              ease: "power2.out",
-            },
-            "-=0.2"
-          )
-          .from(
-            ".hero-right .device-card",
-            {
-              x: 40,
-              opacity: 0,
-              duration: 0.7,
-              ease: "power3.out",
-            },
-            "-=0.4"
-          );
-
-        // Floating device effect
-        gsap.to(".device-card", {
-          y: -8,
-          duration: 3,
-          repeat: -1,
-          yoyo: true,
-          ease: "power1.inOut",
-        });
-
-        // Orbit lines rotate slowly
-        gsap.to(".hero-orbit-circle:nth-child(1)", {
-          rotate: 360,
-          duration: 80,
-          repeat: -1,
-          ease: "none",
-        });
-        gsap.to(".hero-orbit-circle:nth-child(2)", {
-          rotate: -360,
-          duration: 120,
-          repeat: -1,
-          ease: "none",
-        });
-        gsap.to(".hero-orbit-circle:nth-child(3)", {
-          rotate: 360,
-          duration: 140,
-          repeat: -1,
-          ease: "none",
-        });
-
-        // Reveal up sections (includes footer-inner)
-        gsap.utils.toArray(".reveal-up").forEach((el) => {
-          gsap.fromTo(
-            el,
-            { y: 24, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: el,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-              },
+            1280: {       // Large screens
+                slidesPerView: 2.5,
+                spaceBetween: 50,
             }
-          );
-        });
-      }
+        }
     });
-  </script>
+</script>
+
 </body>
+
 </html>
